@@ -1,0 +1,126 @@
+version: "3.1"
+
+nlu:
+- intent: discuss_purpose
+  examples: |
+    - what do you do?
+    - how can you help?
+    - what services do you offer
+    - what can you help with
+    - how can you help
+    - what is your purpose?
+    - what are your abilities
+    - what are your powers?
+    - what features you got
+    - explain yourself
+    - tell me your job
+    - tell me what you do here
+
+- intent: discuss_products
+  examples: |
+    - what kind of products you sell?
+    - what type of products
+    - what things you sell?
+    - what is it you all sell?
+    - tell me about the items on sale
+    - tell me the kind of things you sell
+    - what is up for sale?
+    - what does your store offer?
+
+- intent: figuring_out_user_product_choice
+  examples: |
+    - I am looking for [sharpners](product) to buy
+    - I am looking for [pencils]{"entity": "product", "role": "stationery"} to buy
+    - I am looking for [Ink pens]{"entity": "product", "role": "stationery"} to buy
+    - I am looking for [sticky gum]{"entity": "product", "role": "stationery"} to buy
+    - I am looking for [fevistick]{"entity": "product", "role": "stationery"} to buy
+    - I am looking for [erasers]{"entity": "product", "role": "stationery"} to buy
+
+    - find me some [soap](product) in your store
+    - find me some [soap box]{"entity": "product", "role": "body care"} in your store
+    - find me some [shampoo]{"entity": "product", "role": "body care"} in your store
+    - find me a box of [hair shampoo]{"entity": "product", "role": "body care"} from your store
+    - find me a jar of [q-tips]{"entity": "product", "role": "body care"}in your store
+
+    - do you have any [moisturizer](product) for sale
+    - do you have any [face cream]{"entity": "product", "role": "face care"} for sale
+    - do you have [face wash]{"entity": "product", "role": "face care"} for sale
+    - do you have any [face product]{"entity": "product", "role": "face care"}?
+    - do you have any [beard gel]{"entity": "product", "role": "face care"} for sale
+    - do you have any [nose cream]{"entity": "product", "role": "face care"}
+
+    - can I get a list of items for [skin care](product)
+    - can I get a list of items for [dental care]{"entity": "product", "role": "oral care"}
+    - can I see a list of [toothpastes]{"entity": "product", "role": "oral care"}
+    - what [brand of toothpaste]{"entity": "product", "role": "oral care"} you got on sale?
+    - any item for [dentistry]{"entity": "product", "role": "oral care"}?
+
+    - what options do you provide for [food](product)
+    - what options do you provide for [meals](product)
+    - do you sell any [vegetables]{"entity": "product", "role": "fresh vegetables"}
+    - do you sell any [leaf vegetables]{"entity": "product", "role": "leaf vegetables"}
+    - I want to buy a bag of [Apples].{"entity": "product", "role": "fruits"}
+    - do you sell [apples]{"entity": "product", "role": "fruits"}?
+    - do you have a stack of [bananas]{"entity": "product", "role": "fruits"} for sale?
+    - do you have a bunch of [mangoes]{"entity": "product", "role": "fruits"} for sale?
+    - give me options for [breakfast]{"entity": "product", "role": "cereals"}
+    - can i see choices for [morning cereals]{"entity": "product", "role": "cereals"}
+    - what [milk products]{"entity": "product", "role": "dairy product"} you sell?
+    - what kind of [dairy items]{"entity": "product", "role": "dairy product"} do you provide?
+    - can I see some [butter]{"entity": "product", "role": "dairy product"} choices?
+
+    - I want to buy some [sanitizers](product) and [toileteries](product)
+    - I want to buy a [hand sanitizer]{"entity": "product", "role": "body care", "group": "1"} and [toilet cleaners]{"entity": "product", "role": "toilet cleaner", "group": "2"} for my house
+    - Give me a bag of [spinach]{"entity": "product","role": "leaf vegetables", "group": "1"} with [mushrooms]{"entity": "product","role": "fresh vegetables", "group": "1"} and a large bag of [mosquito coils]{"entity": "product","role": "repellants", "group": "2"}and [stain remover]{"entity": "product","role": "toilet cleaner", "group": "2"}
+    - Find me a canister of [cockroach killing spray]{"entity": "product","role": "repellants"}
+    - I need a pack of [bug spray]{"entity": "product","role": "repellants"}
+    - I need some [wine glasses]{"entity": "product","role": "paper disposables", "group": "1"} and a big [tissue pack]{"entity": "product","role": "paper disposables", "group": "2"}
+
+    - I want to buy an [electric board]{"entity": "product", "role": "basic electricals"}
+    - can you find me a [battery](product) pack to buy?
+    - I want to know about the latest [television]{"entity": "product", "role": "basic electricals"} set available at your store
+    - I need some [light bulbs]{"entity": "product", "role": "basic electricals"} for the house
+    - I want to find some [electrical equipment]{"entity": "product", "role": "basic electricals"} for the house
+    - I need some [screws]{"entity": "product", "role": "basic electricals", "group": "1"} and [switches]{"entity": "product", "role": "basic electricals", "group": "2"} for maintainance.
+
+
+stories:
+
+- story: handle user affirm
+  steps:
+  - checkpoint: check_asked_question
+  - intent: affirm
+  - action: utter_happy
+  - checkpoint: check_flow_finished
+
+- story: finish flow
+  steps:
+  - checkpoint: check_flow_finished
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: explaining_bot_purpose
+  steps:
+  - intent: discuss_purpose
+  - action: utter_bot_purpose
+  - action: utter_did_that_help
+  - checkpoint: check_asked_question
+
+- story: product_discussion
+  steps:
+    - intent: discuss_products
+    - action: utter_discuss_products
+
+- story: product_user_query
+  steps:
+    - intent: figuring_out_user_product_choice
+    - or:
+      - slot_was_set:
+        - products:
+    # - action: validate_products
+    - action: utter_confirm_slot
+    - action: query_product_info
+    - checkpoint: check_asked_question
+
+
+

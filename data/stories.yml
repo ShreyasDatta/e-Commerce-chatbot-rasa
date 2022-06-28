@@ -1,0 +1,66 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: check order status 1
+  steps:
+  - intent: show_my_order_status
+  - action: utter_order_status_action
+  - action: utter_moving_on
+  - intent: affirm
+  - action: utter_happy
+
+- story: payment confirmation 1
+  steps:
+  - intent: finish_and_pay_retail
+  - action: utter_transaction_check_action
+  - intent: affirm
+  - action: utter_transaction_confirmation_action
+
+- story: payment confirmation 3
+  steps:
+  - intent: finish_and_pay_retail
+  - action: utter_transaction_check_action
+  - intent: deny
+  - action: utter_idle_response
+  - intent: need_more_time_retail
+  - action: utter_moving_on
+
+
+# - story: interactive_story_1
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: confirm_exists: {"item_name": "monitors"}
+#       - slot: {"item_name": "monitors"}
+#       - action: action_check_existence
+#   - intent: confirm_exists : {"item_name": "rasa"}
+#       - slot: {"item_name": "rasa"}
+#       - action: action_check_existence

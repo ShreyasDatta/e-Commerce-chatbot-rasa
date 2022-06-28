@@ -1,0 +1,94 @@
+version: "3.1"
+
+actions:
+ - utter_greet
+ - action_check_existence
+ - action_hello_world
+ - query_product_info
+ - validate_products
+ 
+
+entities:
+- product
+
+slots:
+  products:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: product
+
+  
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - show_my_order_status
+  - finish_and_pay_retail
+  - need_more_time_retail
+  - confirm_exists
+  - discuss_purpose
+  - discuss_products
+  - figuring_out_user_product_choice
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Glad to be of help! Carry on."
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+  
+  utter_idle_response:
+  - text: "Take your time. I shall wait"
+
+  utter_confirm_slot:
+    - text: "Are you looking for {products} from our store?"
+
+  utter_discuss_products:
+    - text: "We provide products ranging from Body Care, Oral Care to Vegetables, Fruits, Cereals, Dairy Products and also Electrical Utilities, Stationery and Paper Disposables"
+      buttons:
+      - title: "Look for Body Care"
+        payload: '/figuring_out_user_product_choice{{"product":"Body Care"}}'
+      - title: "Search for Toileteries"
+        payload: '/figuring_out_user_product_choice{{"product":"Toileteries"}}'
+      - title: "Find me some Vegestables"
+        payload: '/figuring_out_user_product_choice{{"product":"Vegetables"}}'
+
+  utter_bot_purpose:
+    - text: "I can help you with shopping for items, and provide you a list of products to look through"
+    - text: "I have the ability to sort through items and help you find what you are looking to purchase. Just ask me what product you are looking for"
+    - text: "You can surf multiple products from different categories. Try asking me what kind of product you are looking for"
+
+  utter_order_status_action:
+  - text: "Your order is currently:"
+
+  utter_transaction_check_action:
+  - text: "Are you sure to proceed with the items in cart?"
+
+  utter_transaction_confirmation_action:
+  - text: "Your order is confirmed. Proceed to the payment portal. Have a nice day!"
+
+  utter_moving_on:
+  - text: "Anything else?"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

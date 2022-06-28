@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "sqlTemp",
+            "database": "${workspaceFolder:Rasa_chatbot}/chatb_db/sqlTemp.db"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
