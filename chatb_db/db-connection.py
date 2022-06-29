@@ -44,7 +44,7 @@ def select_by_slots(conn, slot_value):
     
     else:
         for row in random.sample(rows, 1):
-            print(row)
+            print(f"For {(row[6])} under our {(row[4].lower())}, we have {(row[1])} for Rs.{(row[3])}")
 
     conn.commit()
     conn.close()

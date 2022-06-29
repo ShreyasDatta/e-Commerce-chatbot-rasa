@@ -31,14 +31,12 @@ class QueryProductIinfo(Action):
         slot_value = tracker.get_slot("products")
         # slot_name = "Type"
         # pt = tracker.get_latest_entity_values(entity_type="product")
-        get_query_result =select_by_slots(self, conn, slot_value=slot_value)
+        get_query_result =select_by_slots(conn, slot_value)
         dispatcher.utter_message(text=get_query_result)
-
-        return []
-
+    
 def create_connection(sqlTemp):
     """ create a database connection to the SQLite database      
-    """
+         """
     conn = None
     try:
         conn = sqlite3.connect(sqlTemp)
@@ -47,26 +45,30 @@ def create_connection(sqlTemp):
         print(e)
     return conn
 
+
 def select_by_slots(conn,slot_value):
-    """
-    Query all rows in the tasks table
-    :param conn: the Connection object
-    :return:
-    """
-    cur = conn.cursor()
-    cur.execute(f"""SELECT ProductName 
-        FROM Product
-        WHERE ProductRoles = '{slot_value}'""")
+        """
+        Query all rows in the tasks table
+        :param conn: the Connection object
+        :return:
+        """
+        cur = conn.cursor()
+        cur.execute(f"""SELECT ProductName 
+            FROM Product
+            WHERE ProductRoles = '{slot_value}'""")
 
 
-    rows = cur.fetchall()
-#if cursor is carrying Empty Val from query
-    if len(list(rows)) < 1:
-        return("There are no products matching your query in the database")
-    
-    else:
-        for row in random.sample(rows, 1):
-            return(row)
+        rows = cur.fetchall()
+    #if cursor is carrying Empty Val from query
+        if len(list(rows)) < 1:
+            return("There are no products matching your query in the database")
+        
+        else:
+            for row in random.sample(rows, 1):
+                return(f"Would you be interested in this product, we have {row}")
 
-    conn.commit()
-    conn.close()
+        conn.commit()
+        conn.close()
+
+        return []
+
