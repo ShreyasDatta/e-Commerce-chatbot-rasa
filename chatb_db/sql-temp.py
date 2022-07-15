@@ -1,17 +1,32 @@
 
 import sqlite3
+import random
+import string
+import time
 
 con = sqlite3.connect("sqlTemp.db")
 cur = con.cursor()
 
 #query
-query = """SELECT ProductName, ProductCategory, UnitPrice
-FROM Product
-WHERE ProductRoles = 'Oral Care'"""
+query = """CREATE TABLE `Order`(
+        OrderId INTEGER PRIMARY KEY NOT NULL,
+        OrderNumber VARCHAR(10) NOT NULL, 
+        CustomerId INT,
+        OrderDate DATE
+        );"""
 
-query2 = "SELECT * FROM Product"
+query2 = """DELETE FROM `Order`;"""
 
-cur.execute(query2)
+query3 = "INSERT INTO `Order`(OrderNumber, CustomerId, OrderDate) VALUES('124245', '002', '2022-01-01')"
+
+x = time.strftime("%Y-%m-%d")
+# print(x)
+chars =  string.ascii_lowercase + string.digits
+a = ''.join(random.choice(chars) for _ in range(10))
+order_new_id = a
+# print(order_new_id)
+
+cur.execute(query3)
 print(cur.fetchall())
 
 con.commit()

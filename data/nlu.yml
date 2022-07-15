@@ -1,54 +1,5 @@
 version: "3.1"
-
-# nlu:
-# - intent: greet
-#   examples: |
-#     - hey
-#     - hello
-#     - hi
-#     - hello there
-#     - good morning
-#     - good evening
-#     - moin
-#     - hey there
-#     - let's go
-#     - hey dude
-#     - goodmorning
-#     - goodevening
-#     - good afternoon
-
-# - intent: goodbye
-#   examples: |
-#     - cu
-#     - good by
-#     - cee you later
-#     - good night
-#     - bye
-#     - goodbye
-#     - have a nice day
-#     - see you around
-#     - bye bye
-#     - see you later
-
-# - intent: affirm
-#   examples: |
-#     - yes
-#     - y
-#     - indeed
-#     - of course
-#     - that sounds good
-#     - correct
-
-# - intent: deny
-#   examples: |
-#     - no
-#     - n
-#     - never
-#     - I don't think so
-#     - don't like that
-#     - no way
-#     - not really
-
+nlu:
 - intent: mood_great
   examples: |
     - perfect
@@ -65,7 +16,7 @@ version: "3.1"
     - so so perfect
     - so good
     - so perfect
-
+    - thank you
 - intent: mood_unhappy
   examples: |
     - my day was horrible
@@ -82,25 +33,16 @@ version: "3.1"
     - extremly sad
     - so saad
     - so sad
-
-# - intent: bot_challenge
-#   examples: |
-#     - are you a bot?
-#     - are you a human?
-#     - am I talking to a bot?
-#     - am I talking to a human?
-
-# Training data for intents related to retail domain.
-## This category is for intents, such as "where is my order"
-
-- intent: show_my_order_status
+- intent: stop
   examples: |
-    - I would like to know my order status
-    - Where is my order
-    - When I will get the delivery
-    - Where is my delivery
-    - When will I receive my order
-
+    - stop this
+    - i do not wish to continue
+    - i don't want to continue
+    - i don't want to provide any more information
+    - i don't want to continue with this
+    - stop this search
+    - i change my mind
+    - changed my mind don't continue
 - intent: finish_and_pay_retail
   examples: |
     - Can I checkout
@@ -111,7 +53,6 @@ version: "3.1"
     - I'm ready to pay
     - I'm done shopping
     - I will pay now
-
 - intent: need_more_time_retail
   examples: |
     - I'm not ready yet
@@ -126,18 +67,27 @@ version: "3.1"
     - don't like that
     - no way
     - not really
-
-# have to write the following in md
-# - intent: confirm_exists
-#   examples: |
-#     - Are [computers](item_name) available?
-#     - do you sell [laptops](item_name)?
-#     - ever heard of [monitors](item_name)
-#     - are [monitors](item_name) and [keyboards](item_name) in stock?
-#     - is [rasa](item_name) available?
-#     - hey is [rasa](item_name) in stock?
-#     - are [table](item_name) and [chair](item_name) purchasable?
-#     - are [clock](item_name), [pencils](pokemon_name) and [pens](item_name) listed in the brochure?
-
-# - lookup: item_name
-#   data/items.txt
+- intent: greet
+  examples: |
+    - hi
+- intent: discuss_purpose
+  examples: |
+    - what can you do?
+    - what are you capable of?
+- intent: discuss_product_search_types
+  examples: |
+    - how can i search through these listings?
+- intent: affirm
+  examples: |
+    - yes
+- intent: deny
+  examples: |
+    - no i dont want this
+    - no dont do that
+    - no not this
+- intent: discuss_products
+  examples: |
+    - what kind of products are we talking about?
+- intent: confirm_order
+  examples: |
+    - yes place an order

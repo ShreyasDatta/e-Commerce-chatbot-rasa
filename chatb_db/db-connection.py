@@ -2,6 +2,11 @@ import itertools
 import sqlite3
 from sqlite3 import Error
 import random 
+import string
+import time
+from fuzzywuzzy import fuzz
+from fuzzywuzzy import process
+
 # def peek(iterator):
 #     """
 #     Peek at the next item in the iterator.
@@ -25,6 +30,39 @@ def create_connection(sqlTemp):
     except Error as e:
         print(e)
     return conn
+
+def get_closest_value(conn, slot_name, slot_value):
+        """ Given a database column & text input, find the closest 
+        match for the input in the column.
+        """
+        # get a list of all distinct values from our target column
+        fuzzy_match_cur = conn.cursor()
+        fuzzy_match_cur.execute(f"""SELECT DISTINCT {slot_name} 
+                                FROM eduresources""")
+        column_values = fuzzy_match_cur.fetchall()
+
+        top_match = process.extractOne(slot_value, column_values)
+
+        return(top_match[0])
+
+def order_update_insert_query(conn, user_id):
+        """ Update the Order table with 
+        randomly/uniquely generated user_id and order_id"""
+
+        cur = conn.cursor()
+        current_date = time.strftime("%Y-%m-%d")
+        chars =  string.ascii_lowercase + string.digits
+        order_new_id = ''.join(random.choice(chars) for _ in range(10))
+        cur.execute(f"INSERT INTO `Order`(OrderNumber, CustomerId, OrderDate) VALUES('{order_new_id}','{user_id}','{current_date}')")
+
+        cur.execute(f"""SELECT * FROM `Order`
+         WHERE OrderNumber = '{order_new_id}'""")
+        # return an array
+        rows = cur.fetchall()
+        conn.commit()
+        rows = list(rows)
+        for row in range(len(rows)):
+            print(f"Your order number is {(rows[row][1])} and your order date is {(rows[row][3])}")
 
 def select_by_slots(conn, slot_value):
     """
@@ -51,4 +89,4 @@ def select_by_slots(conn, slot_value):
 
 
 if __name__ == '__main__':
-    select_by_slots(create_connection(r"sqlTemp.db"), slot_value = "Body Care")
+    select_by_slots(create_connection(r"sqlTemp.db"), slot_value="Body Care")

@@ -7,5 +7,6 @@
             "database": "${workspaceFolder:Rasa_chatbot}/chatb_db/sqlTemp.db"
         }
     ],
-    "sqltools.useNodeRuntime": true
+    "sqltools.useNodeRuntime": true,
+    "discord.enabled": false
 }
