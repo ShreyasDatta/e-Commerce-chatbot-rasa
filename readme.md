@@ -115,18 +115,18 @@ To get a local copy up and running follow these simple example steps.
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] hold basic greet-happy-path conversations
-- [ ] user can inquire about bot capabilities
-- [ ] user can inquire about search techniques
-- [ ] bot guides through search process
-    - [ ] query user for search term
-    - [ ] bot suggests search terms
-    - [ ] multi-field querying (for this example, in our deployed database the bot queries from the following columns)
+- [ X ] hold basic greet-happy-path conversations
+- [ X ] user can inquire about bot capabilities
+- [ X ] user can inquire about search techniques
+- [ X ] bot guides through search process
+    - [ X ] query user for search term
+    - [ X ] bot suggests search terms
+    - [ X ] multi-field querying (for this example, in our deployed database the bot queries from the following columns)
         - column: ProductRoles
         - column: ProductCategory
-- [ ] place an order on confirmed product choice
-    - [ ] update Order table with unique order id and user_id from tracker
-- [ ] check for order status
+- [ X ] place an order on confirmed product choice
+    - [ X ] update Order table with unique order id and user_id from tracker
+- [ X ] check for order status
 
 See the [pull requests](https://github.com/ShreyasDatta/e-Commerce-chatbot-rasa/pull/1) for a full list of proposed features and task completion roadmap.
 
