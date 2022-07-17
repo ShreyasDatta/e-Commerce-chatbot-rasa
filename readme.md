@@ -104,7 +104,7 @@ To get a local copy up and running follow these simple example steps.
    ```
 2. Activate virtual env
 
-3. Mount the model `(models/20220716-025700-trusting-normal.tar.gz)c`
+3. Mount the model `(models/20220716-025700-trusting-normal.tar.gz)`
 
 4. Run the rasa shell command
     ```sh
