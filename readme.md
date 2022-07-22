@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/shreyasdatta/e-Commerce-chatbot-rasa">
-    <img src="https://i.imgur.com/4tqIbwp.png" alt="Logo" width="80" height="80">
+    <img src="https://media.discordapp.net/attachments/309638610909396993/999559527194177556/OwlBot.png?width=819&height=657" alt="Logo" width="95" height="80">
   </a>
 
 <h3 align="center">e-Commerce Chatbot</h3>
