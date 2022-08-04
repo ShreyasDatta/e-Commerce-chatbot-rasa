@@ -1,6 +1,6 @@
----
-title: "**Rasa bot Knowledge Base docs**"
----
+
+# Rasa bot Knowledge Base docs
+
 
 ## Problem statement we tackle
 
