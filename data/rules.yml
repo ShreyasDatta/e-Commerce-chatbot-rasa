@@ -1,0 +1,58 @@
+version: "3.1"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Ask the user to rephrase whenever they send a message with low NLU confidence
+  steps:
+  - intent: nlu_fallback
+  - action: utter_repeat_user_intent
+
+
+- rule: welcome user
+  conversation_start: true  # this rule only applies at the beginning of a conversation
+  steps:
+    # - intent: greet
+    - action: utter_welcome
+
+## FORMS
+# - rule: Activate form
+#   steps:
+#   - intent: request_product_info
+#   - action: products_tags_form
+#   - active_loop: products_tags_form
+
+# - rule: Submit form
+#   condition:
+#   # Condition that form is active.
+#   - active_loop: products_tags_form
+#   steps:
+#   # Form is deactivated
+#   - action: products_tags_form
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#   # The actions we want to run when the form is submitted.
+#   - action: utter_submit
+#   - action: utter_slot_values
+
+# - rule: Example of an unhappy path for form
+#   condition:
+#   # Condition that form is active.
+#   - active_loop: products_tags_form
+#   steps:
+#   # This unhappy path handles the case of an intent `chitchat`.
+#   - intent: greet
+#   - action: utter_greet
+#   # Return to form after handling the `chitchat` intent
+#   - action: products_tags_form
+#   - active_loop: products_tags_form

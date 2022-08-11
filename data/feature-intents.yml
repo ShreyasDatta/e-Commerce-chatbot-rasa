@@ -1,0 +1,150 @@
+version: "3.1"
+
+nlu:
+- intent: discuss_purpose
+  examples: |
+    - what do you do?
+    - how can you help?
+    - what services do you offer
+    - what can you help with
+    - how can you help
+    - what is your purpose?
+    - what are your abilities
+    - what are your powers?
+    - what features you got
+    - explain yourself
+    - tell me your job
+    - tell me what you do here
+
+- intent: discuss_products
+  examples: |
+    - what kind of products you sell?
+    - what type of products
+    - what things you sell?
+    - what is it you all sell?
+    - tell me about the items on sale
+    - tell me the kind of things you sell
+    - what is up for sale?
+    - what does your store offer?
+    - what kind of products are we talking about
+  
+
+- intent: discuss_product_search_types
+  examples: | 
+    - how can I search through your product lists?
+    - how can I search for products?
+    - how do i look for something specific
+    - how do i look up a particular category
+    - can i search categories?
+    - do you have a list of categories?
+    - can i search through a product type?
+    - how can i surf through items of a particular type?
+    - can you mention some categories to look through?
+
+- intent: figuring_out_user_product_choice
+  examples: |
+  
+    - I am looking for [sharpners](product) to buy
+    - I am looking for [pencils]{"entity": "product", "role": "stationery"} to buy
+    - I am looking for [Ink pens]{"entity": "product", "role": "stationery"} to buy
+    - I am looking for [sticky gum]{"entity": "product", "role": "stationery"} to buy
+    - I am looking for [fevistick]{"entity": "product", "role": "stationery"} to buy
+    - I am looking for [erasers]{"entity": "product", "role": "stationery"} to buy
+
+    - find me some [soap](product) in your store
+    - find me some [soap box]{"entity": "product", "role": "body care", "value": "Body Care"} in your store
+    - find me some [shampoo]{"entity": "product", "role": "body care"} in your store
+    - find me a box of [hair shampoo]{"entity": "product", "role": "body care", "value": "Body Care"} from your store
+    - find me a jar of [q-tips]{"entity": "product", "role": "body care"}in your store
+
+    - do you have any [moisturizer](product) for sale
+    - do you have any [face cream]{"entity": "product", "role": "face care", "value": "Face Care"} for sale
+    - do you have [face wash]{"entity": "product", "role": "face care", "value": "Face Care"} for sale
+    - do you have any [face product]{"entity": "product", "role": "face care", "value": "Face Care"}?
+    - do you have any [beard gel]{"entity": "product", "role": "face care", "value": "Face Care"} for sale
+    - do you have any [nose cream]{"entity": "product", "role": "face care", "value": "Face Care"}
+
+    - can I get a list of items for [skin care](product)
+    - can I get a list of items for [dental care]{"entity": "product", "role": "oral care", "value": "Oral Care"}
+    - can I see a list of [toothpastes]{"entity": "product", "role": "oral care", "value": "Oral Care"}
+    - what [brand of toothpaste]{"entity": "product", "role": "oral care", "value": "Oral Care"} you got on sale?
+    - any item for [dentistry]{"entity": "product", "role": "oral care", "value": "Oral Care"}?
+
+    - what options do you provide for [food](product)
+    - what options do you provide for [meals](product)
+    - do you sell any [vegetables]{"entity": "product", "role": "fresh vegetables", "value": "Vegetables"}
+    - do you sell any [leaf vegetables]{"entity": "product", "role": "leaf vegetables", "value": "Vegetables"}
+    - I want to buy a bag of [Apples].{"entity": "product", "role": "fruits", "value": "apple"}
+    - do you sell [apples]{"entity": "product", "role": "fruits", "value": "apple"}?
+    - do you have a stack of [bananas]{"entity": "product", "role": "fruits", "value": "banana"} for sale?
+    - do you have a bunch of [mangoes]{"entity": "product", "role": "fruits"} for sale?
+    - give me options for [breakfast]{"entity": "product", "role": "cereals" ,"value": "Dairy Product"}
+    - can i see choices for [morning cereals]{"entity": "product", "role": "cereals","value": "Dairy Product"}
+    - what [milk products]{"entity": "product", "role": "dairy product","value": "Dairy Product"} you sell?
+    - what kind of [dairy items]{"entity": "product", "role": "dairy product","value": "Dairy Product"} do you provide?
+    - can I see some [butter]{"entity": "product", "role": "dairy product","value": "Dairy Product"} choices?
+
+    - I want to buy some [sanitizers](product) and [toileteries](product)
+    - I want to buy a [hand sanitizer]{"entity": "product", "role": "body care", "group": "1"} and [toilet cleaners]{"entity": "product", "role": "toilet cleaner","value": "Toilet cleaners", "group": "2"} for my house
+    - Give me a bag of [spinach]{"entity": "product","role": "leaf vegetables", "group": "1"} with [mushrooms]{"entity": "product","role": "fresh vegetables", "group": "1"} and a large bag of [mosquito coils]{"entity": "product","role": "repellants", "group": "2"} and [stain remover]{"entity": "product","role": "toilet cleaner", "value": "Toilet cleaners","group": "2"}
+    - Find me a canister of [cockroach killing spray]{"entity": "product","role": "repellants"}
+    - I need a pack of [bug spray]{"entity": "product","role": "repellants"}
+    - I need some [wine glasses]{"entity": "product","role": "paper disposables", "group": "1"} and a big [tissue pack]{"entity": "product","role": "paper disposables", "group": "2"}
+
+    - I want to buy an [electric board]{"entity": "product", "role": "basic electricals"}
+    - can you find me a [battery](product) pack to buy?
+    - I want to know about the latest [television]{"entity": "product", "role": "basic electricals"} set available at your store
+    - I need some [light bulbs]{"entity": "product", "role": "basic electricals"} for the house
+    - I want to find some [electrical equipment]{"entity": "product", "role": "basic electricals"} for the house
+    - I need some [screws]{"entity": "product", "role": "basic electricals", "group": "1"} and [switches]{"entity": "product", "role": "basic electricals", "group": "2"} for maintainance.
+
+    - Find me some [drinks]{"entity": "product", "role": "drinks"} for sale.
+    - [drinks]{"entity": "product", "role": "drinks"}
+    - I want to buy some [drinks]{"entity": "product", "role": "drinks"}.
+    - I want to buy some [alcoholic drinks]{"entity": "product", "role": "drinks"}.
+    - I want to buy some [non-alcoholic drinks]{"entity": "product", "role": "drinks"}
+    - get me some [water]{"entity": "product", "role": "drinks"}.
+    - I want to purchase some [juice]{"entity": "product", "role": "drinks"}.
+
+- intent: query_product_category
+  examples: |
+    - I like products for [bathing and body](Bath and Body)
+    - i prefer an item for [bath and body](Bath and Body)
+    - [bath and body](Bath and Body)
+    - i'd like a something for [hygiene].(Hygiene and Grooming)
+    - [hygiene].(Hygiene and Grooming)
+    - i'd like a something for [hygiene and grooming](Hygiene and Grooming)
+    - i want to find [cleaning materials](Cleaning Essentials) for my house.
+    - find me products for [cleaning].([hygiene].(Cleaning Essentials)
+    - find me things for [self groom](Hygiene and Grooming) category.
+    - I'm looking for [cleaniness](Cleaning Essentials) products.
+    - a product for [cereals].(Breakfast and Spreads)
+    - get me a list of items for [morning category].(Breakfast and Spreads)
+    - Search through a list of [breakfast items].(Breakfast and Spreads)
+    - Oh! i want to find something in the [fruits vegetable] category. (Fruits and Vegetables)
+    - help me look for something in the [fruits section]. (Fruits and Vegetables)
+    - [home products](Home Utilities)
+    - things i need in for [house utility](Home Utilities)
+    - [drinks](Beverages)
+    - [alcoholic drinks](Beverages)
+    - want to look for [drinks](product) in the [beverages](Beverages) category.
+    - i want to buy some [drinks](Beverages)
+    - i want to purchase some [alcoholic drinks](Beverages)
+
+- intent: show_my_order_status
+  examples: |
+    - I would like to know my order status
+    - Where is my order
+    - When I will get the delivery
+    - Where is my delivery
+    - When will I receive my order
+    - When will I get my order
+
+- intent: request_product_info
+  examples: |
+    - i want to search for some products
+    - proceed with searching for products
+    - want to search something
+    - i will provide details on what I want
+    - i want to search something specific
+    - want to find a specific item

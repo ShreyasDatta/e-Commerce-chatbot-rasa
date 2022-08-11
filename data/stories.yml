@@ -1,0 +1,275 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: check order status 1 happy path
+  steps:
+  - intent: show_my_order_status
+  - action: check_confirmed_order_details
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: check order status 2 unhappy path
+  steps:
+  - intent: show_my_order_status
+  - action: check_confirmed_order_details
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_repeat_user_intent
+
+#stories for product info
+- story: handle user affirm
+  steps:
+  - checkpoint: check_asked_question
+  - action: utter_ask_to_place_order
+  - or:
+    - intent: confirm_order
+    - intent: affirm
+  - action: place_confirmed_order
+  - checkpoint: check_flow_finished
+
+- story: finish flow
+  steps:
+  - checkpoint: check_flow_finished
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: explaining_bot_purpose
+  steps:
+  - intent: discuss_purpose
+  - action: utter_bot_purpose
+  - action: utter_did_that_help
+  # - checkpoint: check_asked_question
+
+- story: product_discussion
+  steps:
+    - intent: discuss_products
+    - action: utter_discuss_products
+
+- story: product_search_methods
+  steps:
+    - intent: discuss_product_search_types
+    - action: utter_check_product_category
+
+- story: product_general_query
+  steps:
+    - intent: figuring_out_user_product_choice
+      entities:
+        - product: apple
+    - slot_was_set:
+      - products: apple
+    - action: utter_confirm_slot
+    - action: collect_product_info
+    - checkpoint: check_asked_question
+
+- story: product_general_query_unhappy_path
+  steps:
+    - intent: figuring_out_user_product_choice
+      entities:
+        - product: sanitizers
+    - slot_was_set:
+      - products:
+    - action: utter_confirm_slot
+    - intent: deny
+    - action: utter_try_different_search_criteria
+    - checkpoint: search_through_category
+
+- story: query_through_product_category
+  steps:
+    - checkpoint: search_through_category
+    - intent: discuss_product_search_types
+    - action: utter_check_product_category
+    - intent: query_product_category
+      entities:
+        - Cleaning Essentials: Cleaning Essentials
+    - slot_was_set:
+      - productCategory: Cleaning Essentials
+    - action: utter_confirm_slot
+    - action: collect_product_info
+    - action: utter_ask_to_place_order
+    - or:
+      - intent: confirm_order
+      - intent: affirm
+    - action: place_confirmed_order
+
+
+# - story: User interrupts the form and doesn't want to continue
+#   steps:
+#   - intent: request_product_info
+#   - action: products_tags_form
+#   - active_loop: products_tags_form
+#   - intent: stop
+#   - action: utter_ask_continue
+#   - or:
+#     - intent: stop
+#     - intent: deny
+#   - action: action_deactivate_loop
+#   - active_loop: null
+
+- story: interactive_story_1
+  steps:
+  - intent: discuss_products
+  - action: utter_discuss_products
+  - intent: figuring_out_user_product_choice
+    entities:
+    - product: Body Care
+  - slot_was_set:
+    - products: Body Care
+  - action: utter_confirm_slot
+  - action: collect_product_info
+  - intent: deny
+  - action: utter_try_different_search_criteria
+  - action: utter_check_product_category
+  - intent: query_product_category
+    entities:
+    - Bath and Body: Bath and Body
+  - slot_was_set:
+    - productCategory: Bath and Body
+  - action: utter_confirm_slot
+  - action: collect_product_info
+  - action: utter_ask_to_place_order
+  - or:
+    - intent: confirm_order
+    - intent: affirm
+  - action: place_confirmed_order
+  - action: utter_happy
+
+- story: interactive_story_new_complete
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: discuss_purpose
+  - action: utter_bot_purpose
+  - action: utter_did_that_help
+  - intent: discuss_products
+  - action: utter_discuss_products
+  - intent: figuring_out_user_product_choice
+    entities:
+    - product: Body Care
+  - slot_was_set:
+    - products: Body Care
+  - action: utter_confirm_slot
+  - action: collect_product_info
+  - intent: deny
+  - action: utter_try_different_search_criteria
+  - action: utter_check_product_category
+  - intent: query_product_category
+    entities:
+    - Hygiene and Grooming: Hygiene and Grooming
+  - slot_was_set:
+    - productCategory: Hygiene and Grooming
+  - action: utter_confirm_slot
+  - action: collect_product_info
+  - intent: affirm
+  - action: utter_ask_to_place_order
+  - intent: confirm_order
+  - action: place_confirmed_order
+  - intent: mood_great
+  - action: utter_happy
+
+- story: interactive_story_querying_product_category
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: discuss_purpose
+  - action: utter_bot_purpose
+  - intent: discuss_product_search_types
+  - action: utter_check_product_category
+  - intent: query_product_category
+    entities:
+    - Fruits and Vegetables: Fruits and Vegetables
+  - slot_was_set:
+    - productCategory: Fruits and Vegetables
+  - action: utter_confirm_slot
+  - intent: affirm
+  - action: utter_ask_to_place_order
+  - intent: affirm
+  - action: place_confirmed_order
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: discuss_purpose
+  - action: utter_bot_purpose
+  - intent: discuss_product_search_types
+  - action: utter_check_product_category
+  - intent: query_product_category
+    entities:
+    - Beverages: Beverages
+  - slot_was_set:
+    - productCategory: Beverages
+  - action: utter_confirm_slot
+  - intent: affirm
+  - action: collect_product_info
+  - action: utter_ask_to_place_order
+  - intent: deny
+  - action: utter_discuss_products
+  - intent: figuring_out_user_product_choice
+    entities:
+    - product: Drinks
+  - slot_was_set:
+    - products: Drinks
+  - action: utter_confirm_slot
+  - action: collect_product_info
+  - action: utter_ask_to_place_order
+  - intent: deny
+  - action: utter_goodbye
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: discuss_purpose
+  - action: utter_bot_purpose
+  - intent: discuss_products
+  - action: utter_discuss_products
+  - intent: figuring_out_user_product_choice
+    entities:
+    - product: Body Care
+  - slot_was_set:
+    - products: Body Care
+  - action: utter_confirm_slot
+  - action: collect_product_info
+  - intent: deny
+  - action: utter_try_different_search_criteria
+  - action: utter_check_product_category
+  - intent: query_product_category
+    entities:
+    - Beverages: Beverages
+  - slot_was_set:
+    - productCategory: Beverages
+  - action: utter_confirm_slot
+  - action: collect_product_info
+  - intent: affirm
+  - action: utter_ask_to_place_order
+  - intent: confirm_order
+  - action: place_confirmed_order

@@ -1,0 +1,93 @@
+version: "3.1"
+nlu:
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+    - thank you
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+- intent: stop
+  examples: |
+    - stop this
+    - i do not wish to continue
+    - i don't want to continue
+    - i don't want to provide any more information
+    - i don't want to continue with this
+    - stop this search
+    - i change my mind
+    - changed my mind don't continue
+- intent: finish_and_pay_retail
+  examples: |
+    - Can I checkout
+    - I'm ready to checkout
+    - My cart is ready
+    - I'm finished shopping
+    - Can I pay with a credit card
+    - I'm ready to pay
+    - I'm done shopping
+    - I will pay now
+- intent: need_more_time_retail
+  examples: |
+    - I'm not ready yet
+    - I need more time
+    - Let me think
+    - I'm unsure
+    - one moment
+    - one second
+    - one minute
+    - hold on
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+- intent: greet
+  examples: |
+    - hi
+- intent: discuss_purpose
+  examples: |
+    - what can you do?
+    - what are you capable of?
+- intent: discuss_product_search_types
+  examples: |
+    - how can i search through these listings?
+- intent: affirm
+  examples: |
+    - yes
+- intent: deny
+  examples: |
+    - no i dont want this
+    - no dont do that
+    - no not this
+- intent: discuss_products
+  examples: |
+    - what kind of products are we talking about?
+- intent: confirm_order
+  examples: |
+    - yes place an order

@@ -1,0 +1,209 @@
+version: '3.1'
+actions:
+- action_check_existence
+- check_confirmed_order_details
+- collect_product_info
+- place_confirmed_order
+- query_product_info
+- utter_ask_continue
+- utter_ask_products_tag_form_productCategory
+- utter_ask_products_tag_form_products
+- utter_ask_to_place_order
+- utter_bot_purpose
+- utter_check_product_category
+- utter_cheer_up
+- utter_confirm_slot
+- utter_continue_with_current_slots
+- utter_default
+- utter_did_that_help
+- utter_discuss_products
+- utter_goodbye
+- utter_greet
+- utter_happy
+- utter_iamabot
+- utter_idle_response
+- utter_moving_on
+- utter_repeat_user_intent
+- utter_slot_values
+- utter_submit
+- utter_try_different_search_criteria
+- utter_welcome
+- validate_products
+- validate_products_tags_form
+entities:
+- Beverages
+- product
+- Fruits and Vegetables
+- Hygiene and Grooming
+- productCategory
+- Bath and Body
+- Cleaning Essentials
+- Breakfast and Spreads
+- Home Utilities
+slots:
+  products:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: product
+  productCategory:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: Bath and Body
+      value: Bath and Body
+    - type: from_entity
+      entity: Hygiene and Grooming
+      value: Hygiene and Grooming
+    - type: from_entity
+      entity: Cleaning Essentials
+      value: Cleaning Essentials
+    - type: from_entity
+      entity: Breakfast and Spreads
+      value: Breakfast and Spreads
+    - type: from_entity
+      entity: Fruits and Vegetables
+      value: Fruits and Vegetables
+    - type: from_entity
+      entity: Home Utilities
+      value: Home Utilities
+    - type: from_entity
+      entity: Beverages
+      value: Beverages
+forms:
+  products_tags_form:
+    required_slots:
+    - products
+    - productCategory
+intents:
+- affirm
+- bot_challenge
+- confirm_order
+- deny
+- discuss_product_search_types
+- discuss_products
+- discuss_purpose
+- figuring_out_user_product_choice:
+    use_entities:
+    - product
+- finish_and_pay_retail
+- goodbye
+- greet
+- mood_great
+- mood_unhappy
+- need_more_time_retail
+- query_product_category:
+    use_entities:
+    - Bath and Body
+    - Hygiene and Grooming
+    - Cleaning Essentials
+    - Breakfast and Spreads
+    - Fruits and Vegetables
+    - Home Utilities
+- request_product_info
+- show_my_order_status
+- stop
+responses:
+  utter_greet:
+  - text: Hey! How are you?
+  utter_welcome:
+  - text: Welcome to the store!
+  - text: Hi there! What can I help you with today?
+  utter_cheer_up:
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
+  utter_did_that_help:
+  - text: Did that help you?
+  - text: Is there anything I can help you with?
+  - text: Is that what you intended for me to do?
+  utter_happy:
+  - text: Glad to be of help! Carry on.
+  - text: I am happy to be of help.
+  - text: I am glad to be of help.
+  utter_repeat_user_intent:
+  - text: I am sorry, I didn't understand that. Can you rephrase it?
+  - text: I didn't quite get it, please ask again.
+  utter_default:
+  - text: Sorry I didn't get that. Can you rephrase?
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_idle_response:
+  - text: Take your time. I shall wait
+  utter_ask_continue:
+  - text: Do you want to continue?
+  - text: Do you want to continue providing more info?
+  utter_submit:
+  - text: Submitting your choice tags!
+  - text: I am submitting your choice tags!
+  - text: Remebering your specifications!
+  utter_slot_values:
+  - text: You have selected the following Product Roles`:`{ products } and Product Categories `:` {productCategory}
+  - text: You mentioned {products} and {productCategory} as Product roles and Categories respectively.
+  - text: For the Product Roles, you have selected {products} and for the Product Categories, you have selected {productCategory}
+  utter_ask_products:
+  - text: What are the Product Roles you are looking for?
+  - text: Define search tag 'Product Role'. What role does your product entail?
+  utter_ask_productCategory:
+  - text: What are the Product Categories you are looking for?
+  - text: what category of product are you looking for?
+  - text: Define search tag 'Product Category'. What category does your product belong to?
+  utter_continue_with_current_slots:
+  - text: Do you want to continue with the current slots?
+  - text: Shall I proceed to query the database with the current slots?
+  - text: Shall I make a search attempt with your current input values?
+  utter_confirm_slot:
+  - text: You mentioned {products} and {productCategory} as Product roles and Categories respectively.
+  - text: For the Product Roles, you have selected {products} and for the Product Categories, you have selected {productCategory}
+  utter_try_different_search_criteria:
+  - text: I am sorry for that. Can you try different search criteria?
+  - text: Would you want to attempt a different search pattern?
+  - text: Help me narrow your choices. Mention what role or purpose of product you are looking for.
+  utter_check_product_category:
+  - text: Try searching through our available Product Categories -  Bath and Body, Hygiene and Grooming, Cleaning Essentials, Breakfast and Spreads, Fruits and Vegetables, Home Utilities"
+    buttons:
+    - title: ' Bath and Body'
+      payload: '/query_product_category{{"Bath and Body" : "Bath and Body"}}'
+    - title: ' Hygiene and Grooming'
+      payload: /query_product_category{{"Hygiene and Grooming":"Hygiene and Grooming"}}
+    - title: ' Fruits and Vegetables'
+      payload: /query_product_category{{"Fruits and Vegetables":"Fruits and Vegetables"}}
+    - title: ' Cleaning Essentials'
+      payload: /query_product_category{{"Cleaning Essentials":"Cleaning Essentials"}}
+    - title: ' Beverages'
+      payload: /query_product_category{{"Beverages":"Beverages"}}
+    - title: ' Home Utilities'
+      payload: /query_product_category{{"Home Utilities":"Home Utilities"}}
+  utter_discuss_products:
+  - text: We provide products ranging from Body Care, Oral Care to Vegetables, Fruits, Cereals, Dairy Products and also Electrical Utilities, Stationery and Paper Disposables
+    buttons:
+    - title: Look for Body Care
+      payload: /figuring_out_user_product_choice{{"product":"Body Care"}}
+    - title: Search for Toileteries
+      payload: /figuring_out_user_product_choice{{"product":"Toilet Cleaners"}}
+    - title: Find me some Vegetables
+      payload: /figuring_out_user_product_choice{{"product":"Fresh vegetables"}}
+    - title: Find me some Drinks
+      payload: /figuring_out_user_product_choice{{"product":"Drinks"}}
+    - title: Look for electronic equipments
+      payload: /figuring_out_user_product_choice{{"product":"Basic Electricals"}}
+  utter_bot_purpose:
+  - text: I can help you with shopping for items, and provide you a list of products to look through
+  - text: I have the ability to sort through items and help you find what you are looking to purchase. Just ask me what product you are looking for
+  - text: You can surf multiple products from different categories. Try asking me what kind of product you are looking for
+  utter_ask_to_place_order:
+  - text: Do you want to place an order?
+  - text: If this is what you are looking for, would you want to proceed with an order placement?
+  - text: Would you like to place this order?
+  utter_order_status_action:
+  - text: 'Your order is currently:'
+  utter_transaction_check_action:
+  - text: Are you sure to proceed with the items in cart?
+  utter_transaction_confirmation_action:
+  - text: Your order is confirmed. Proceed to the payment portal. Have a nice day!
+  utter_moving_on:
+  - text: Anything else?
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

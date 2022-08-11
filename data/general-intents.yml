@@ -1,0 +1,155 @@
+version: "3.1"
+
+nlu:
+- synonym: apple
+  examples: |
+    - apples
+    - Apples
+    - bunch of Apples
+    - pair of apples
+- synonym: banana
+  examples: |
+    - Bananas
+    - bunch of bananas
+    - pair of bananas
+- synonym: Toilet cleaners
+  examples: |
+    - Toilet rolls
+    - toilet Rolls
+    - Tissue boxes
+- synonym: Vegetables
+  examples: |
+    - vegetables
+    - Vegetables
+    - bunch of vegetables
+    - pair of vegetables
+    - leafy vegetables
+    - spinach
+    - broccoli
+- synonym: Dairy product
+  examples: |
+    - butter
+    - milk
+    - carton of milk
+    - carton of butter
+    - milk products
+
+- synonym: Face Care
+  examples: |
+    - beard gel
+    - beard spray
+    - nose cream
+    - face wash
+    - moisturizer
+    - beard oil
+
+- synonym: Body Care
+  examples: |
+    - shampoo
+    - soap
+    - soap box
+    - a box of shampoo
+    - box of soap
+
+- synonym: Oral Care
+  examples: |
+    - toothpaste
+    - toothbrush
+    - toothpaste box
+    - toothbrush box
+    - toothpaste container
+    - toothbrush container
+
+  
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - i confirm it
+    - make it happen
+    - i agree
+    - i understand
+    - i agree with that
+    - confirm it
+    - confirmed
+    - i am sure
+
+- intent: confirm_order
+  examples: |
+    - I want to place order
+    - I want to place an order
+    - i shall place this order
+    - proceed with this order
+    - yes this is what i want to order
+    - go ahead and put an order
+    - yes please place it
+    - confirm the order on my end
+    - i am sure i want to order this
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - changed my mind don't continue
+    - no i don't want this
+    - this is not what i want
+    - not really
+    - not like this
+    - not this
+    - na
+    - denyy
+    - I say no
+    - don't do it
+    - this is not what I want
+    - cancel it
+    - i don't want to do it
+    - don't do it
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    - you are not real
+    - are you real?
+    - are you an ai
+    - you are not a person
+    - what are you?
